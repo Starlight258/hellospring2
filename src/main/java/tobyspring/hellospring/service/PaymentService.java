@@ -5,14 +5,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import tobyspring.hellospring.Payment;
 import tobyspring.hellospring.provider.ExRateProvider;
-import tobyspring.hellospring.provider.SimpleExRateProvider;
 
 public class PaymentService {
 
     private final ExRateProvider exRateProvider;
 
-    public PaymentService() {
-        this.exRateProvider = new SimpleExRateProvider();
+    public PaymentService(final ExRateProvider exRateProvider) {
+        this.exRateProvider = exRateProvider;
     }
 
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount)
