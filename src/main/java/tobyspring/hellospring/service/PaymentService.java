@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import tobyspring.hellospring.Payment;
+import tobyspring.hellospring.provider.ExRateProvider;
+import tobyspring.hellospring.provider.SimpleExRateProvider;
 
 public class PaymentService {
 
-    private final WebApiExRateProvider exRateProvider;
+    private final ExRateProvider exRateProvider;
 
     public PaymentService() {
-        this.exRateProvider = new WebApiExRateProvider();
+        this.exRateProvider = new SimpleExRateProvider();
     }
 
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount)
             throws IOException {
-        BigDecimal exRate = exRateProvider.getWebExRate(currency);
+        BigDecimal exRate = exRateProvider.getExRate(currency);
         BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
         LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
 

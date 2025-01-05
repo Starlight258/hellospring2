@@ -1,4 +1,4 @@
-package tobyspring.hellospring.service;
+package tobyspring.hellospring.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
@@ -10,9 +10,10 @@ import java.net.URL;
 import java.util.stream.Collectors;
 import tobyspring.hellospring.ExRateData;
 
-public class WebApiExRateProvider {
+public class WebApiExRateProvider implements ExRateProvider {
 
-    BigDecimal getWebExRate(final String currency) throws IOException {
+    @Override
+    public BigDecimal getExRate(final String currency) throws IOException {
         URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
