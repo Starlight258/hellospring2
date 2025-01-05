@@ -2,9 +2,8 @@ package tobyspring.hellospring.service;
 
 import java.math.BigDecimal;
 
-public class SimpleExRatePaymentService extends PaymentService {
+public class SimpleExRateProvider {
 
-    @Override
     BigDecimal getExRate(final String currency) {
         if (currency.equals("USD")) {
             return BigDecimal.valueOf(1000);
