@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.stream.Collectors;
 import tobyspring.hellospring.ExRateData;
 
+//@Component
 public class WebApiExRateProvider implements ExRateProvider {
 
     @Override
