@@ -1,4 +1,4 @@
-package tobyspring.hellospring.provider;
+package tobyspring.hellospring.domain.provider;
 
 import java.math.BigDecimal;
 import org.springframework.stereotype.Component;

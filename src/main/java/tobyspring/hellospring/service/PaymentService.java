@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
-import tobyspring.hellospring.Payment;
-import tobyspring.hellospring.provider.ExRateProvider;
+import tobyspring.hellospring.domain.payment.Payment;
+import tobyspring.hellospring.domain.provider.ExRateProvider;
 
 @Component
 public class PaymentService {

@@ -1,4 +1,4 @@
-package tobyspring.hellospring.provider;
+package tobyspring.hellospring.domain.provider;
 
 import java.io.IOException;
 import java.math.BigDecimal;

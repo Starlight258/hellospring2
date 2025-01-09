@@ -1,4 +1,4 @@
-package tobyspring.hellospring.provider;
+package tobyspring.hellospring.domain.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
-import tobyspring.hellospring.ExRateData;
+import tobyspring.hellospring.dto.ExRateData;
 
 //@Component
 public class WebApiExRateProvider implements ExRateProvider {
