@@ -4,8 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import tobyspring.hellospring.Client;
+import tobyspring.hellospring.domain.provider.CachedExRateProvider;
 import tobyspring.hellospring.domain.provider.ExRateProvider;
-import tobyspring.hellospring.domain.provider.SimpleExRateProvider;
+import tobyspring.hellospring.domain.provider.WebApiExRateProvider;
 import tobyspring.hellospring.service.PaymentService;
 
 @Configuration
@@ -14,12 +15,16 @@ public class ObjectFactory {
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(exRateProvider());
+        return new PaymentService(cachedExRateProvider());
     }
 
+    @Bean
+    public CachedExRateProvider cachedExRateProvider() {
+        return new CachedExRateProvider(exRateProvider());
+    }
 
     @Bean
     public ExRateProvider exRateProvider() {
-        return new SimpleExRateProvider();
+        return new WebApiExRateProvider();
     }
 }
