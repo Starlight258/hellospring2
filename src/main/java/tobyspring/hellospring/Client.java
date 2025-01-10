@@ -7,7 +7,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tobyspring.hellospring.config.ObjectFactory;
 import tobyspring.hellospring.domain.payment.Payment;
-import tobyspring.hellospring.service.PaymentService;
+import tobyspring.hellospring.domain.payment.PaymentService;
 
 public class Client {
 

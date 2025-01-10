@@ -1,4 +1,4 @@
-package tobyspring.hellospring.domain.provider;
+package tobyspring.hellospring.domain.exrate;
 
 import java.math.BigDecimal;
 

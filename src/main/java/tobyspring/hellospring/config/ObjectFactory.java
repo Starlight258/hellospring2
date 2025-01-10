@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import tobyspring.hellospring.Client;
-import tobyspring.hellospring.domain.provider.CachedExRateProvider;
-import tobyspring.hellospring.domain.provider.ExRateProvider;
-import tobyspring.hellospring.domain.provider.WebApiExRateProvider;
-import tobyspring.hellospring.service.PaymentService;
+import tobyspring.hellospring.domain.exrate.CachedExRateProvider;
+import tobyspring.hellospring.domain.exrate.ExRateProvider;
+import tobyspring.hellospring.domain.exrate.WebApiExRateProvider;
+import tobyspring.hellospring.domain.payment.PaymentService;
 
 @Configuration
 @ComponentScan(basePackageClasses = Client.class)  // 메인 애플리케이션 클래스 기준

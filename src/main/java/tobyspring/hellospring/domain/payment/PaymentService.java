@@ -1,10 +1,9 @@
-package tobyspring.hellospring.service;
+package tobyspring.hellospring.domain.payment;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import tobyspring.hellospring.domain.payment.Payment;
-import tobyspring.hellospring.domain.provider.ExRateProvider;
+import tobyspring.hellospring.domain.exrate.ExRateProvider;
 
 public class PaymentService {
 
