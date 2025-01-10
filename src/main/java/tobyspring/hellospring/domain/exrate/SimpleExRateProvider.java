@@ -1,6 +1,7 @@
 package tobyspring.hellospring.domain.exrate;
 
 import java.math.BigDecimal;
+import tobyspring.hellospring.domain.payment.ExRateProvider;
 
 public class SimpleExRateProvider implements ExRateProvider {
 

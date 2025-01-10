@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
+import tobyspring.hellospring.domain.payment.ExRateProvider;
 import tobyspring.hellospring.dto.ExRateData;
 
 //@Component

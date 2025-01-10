@@ -3,6 +3,7 @@ package tobyspring.hellospring.domain.exrate;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import tobyspring.hellospring.domain.payment.ExRateProvider;
 
 public class CachedExRateProvider implements ExRateProvider {
 
