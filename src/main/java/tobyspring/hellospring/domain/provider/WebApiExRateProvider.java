@@ -13,9 +13,12 @@ import tobyspring.hellospring.dto.ExRateData;
 //@Component
 public class WebApiExRateProvider implements ExRateProvider {
 
+    private static final String URL = "https://open.er-api.com/v6/latest/";
+    private static final String KRW = "KRW";
+
     @Override
     public BigDecimal getExRate(final String currency) throws IOException {
-        URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
+        URL url = new URL(URL + currency);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String response = br.lines().collect(Collectors.joining());
@@ -23,6 +26,6 @@ public class WebApiExRateProvider implements ExRateProvider {
 
         ObjectMapper mapper = new ObjectMapper();
         ExRateData data = mapper.readValue(response, ExRateData.class);
-        return data.rates().get("KRW");
+        return data.rates().get(KRW);
     }
 }
