@@ -8,6 +8,7 @@ import tobyspring.hellospring.Client;
 import tobyspring.hellospring.domain.exrate.CachedExRateProvider;
 import tobyspring.hellospring.domain.exrate.WebApiExRateProvider;
 import tobyspring.hellospring.domain.payment.ExRateProvider;
+import tobyspring.hellospring.domain.payment.PaymentFactory;
 import tobyspring.hellospring.domain.payment.PaymentService;
 
 @Configuration
@@ -16,7 +17,12 @@ public class PaymentConfig {
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(cachedExRateProvider(), clock());
+        return new PaymentService(paymentFactory());
+    }
+
+    @Bean
+    public PaymentFactory paymentFactory() {
+        return new PaymentFactory(cachedExRateProvider(), clock());
     }
 
     @Bean

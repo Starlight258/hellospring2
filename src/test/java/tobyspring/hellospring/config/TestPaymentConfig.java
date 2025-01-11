@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tobyspring.hellospring.domain.payment.ExRateProvider;
 import tobyspring.hellospring.domain.payment.ExRateProviderStub;
+import tobyspring.hellospring.domain.payment.PaymentFactory;
 import tobyspring.hellospring.domain.payment.PaymentService;
 
 @Configuration
@@ -15,7 +16,12 @@ public class TestPaymentConfig {
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(exRateProvider(), clock());
+        return new PaymentService(paymentFactory());
+    }
+
+    @Bean
+    public PaymentFactory paymentFactory() {
+        return new PaymentFactory(exRateProvider(), clock());
     }
 
     @Bean

@@ -3,23 +3,17 @@ package tobyspring.hellospring.domain.payment;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
-import java.time.LocalDateTime;
 
 public class PaymentService {
 
-    private final ExRateProvider exRateProvider;
-    private final Clock clock;
+    private final PaymentFactory paymentFactory;
 
-    public PaymentService(final ExRateProvider exRateProvider, final Clock clock) {
-        this.exRateProvider = exRateProvider;
-        this.clock = clock;
+    public PaymentService(final PaymentFactory paymentFactory) {
+        this.paymentFactory = paymentFactory;
     }
 
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount)
             throws IOException {
-        BigDecimal exRate = exRateProvider.getExRate(currency);
-
-        return Payment.createPrepared(orderId, currency, foreignCurrencyAmount, exRate, LocalDateTime.now(clock));
+        return paymentFactory.createPrepared(orderId, currency, foreignCurrencyAmount);
     }
-
 }

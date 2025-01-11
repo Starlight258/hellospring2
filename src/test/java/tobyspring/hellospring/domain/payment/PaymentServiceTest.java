@@ -35,7 +35,8 @@ class PaymentServiceTest {
     }
 
     private void testAmount(final BigDecimal exRate, final BigDecimal convertedAmount, final Clock clock) throws IOException {
-        PaymentService paymentService = new PaymentService(new ExRateProviderStub(exRate), clock);
+        PaymentFactory paymentFactory = new PaymentFactory(new ExRateProviderStub(exRate), clock);
+        PaymentService paymentService = new PaymentService(paymentFactory);
 
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
@@ -49,7 +50,8 @@ class PaymentServiceTest {
     @DisplayName("유효시간은 현재 시간의 30분 뒤이다.")
     void 유효시간은_현재_시간의_30분_뒤이다() throws IOException {
         // Given
-        PaymentService paymentService = new PaymentService(new ExRateProviderStub(BigDecimal.valueOf(1_000)), clock);
+        PaymentFactory paymentFactory = new PaymentFactory(new ExRateProviderStub(BigDecimal.valueOf(1_000)), clock);
+        PaymentService paymentService = new PaymentService(paymentFactory);
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
         // When
