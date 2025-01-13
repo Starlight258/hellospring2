@@ -2,7 +2,7 @@ package tobyspring.hellospring.domain.exrate;
 
 import java.math.BigDecimal;
 import tobyspring.hellospring.api.ApiTemplate;
-import tobyspring.hellospring.api.executor.SimpleApiExecutor;
+import tobyspring.hellospring.api.executor.HttpClientApiExecutor;
 import tobyspring.hellospring.domain.payment.ExRateProvider;
 import tobyspring.hellospring.api.extractor.ErApiExRateExtractor;
 
@@ -16,6 +16,6 @@ public class WebApiExRateProvider implements ExRateProvider {
     @Override
     public BigDecimal getExRate(final String currency) {
         String url = URL + currency;
-        return apiTemplate.getExRate(url, new SimpleApiExecutor(), new ErApiExRateExtractor()); // 콜백 (실제 구현체)
+        return apiTemplate.getExRate(url, new HttpClientApiExecutor(), new ErApiExRateExtractor()); // 콜백 (실제 구현체)
     }
 }
