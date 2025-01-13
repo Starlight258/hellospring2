@@ -1,4 +1,4 @@
-package tobyspring.hellospring.extractor;
+package tobyspring.hellospring.api.extractor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.math.BigDecimal;

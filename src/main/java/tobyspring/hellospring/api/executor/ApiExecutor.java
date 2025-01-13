@@ -1,4 +1,4 @@
-package tobyspring.hellospring.api;
+package tobyspring.hellospring.api.executor;
 
 import java.io.IOException;
 import java.net.URI;
