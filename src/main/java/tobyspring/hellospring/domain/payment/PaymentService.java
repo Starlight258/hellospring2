@@ -1,8 +1,6 @@
 package tobyspring.hellospring.domain.payment;
 
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.Clock;
 
 public class PaymentService {
 
@@ -12,8 +10,7 @@ public class PaymentService {
         this.paymentFactory = paymentFactory;
     }
 
-    public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount)
-            throws IOException {
+    public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) {
         return paymentFactory.createPrepared(orderId, currency, foreignCurrencyAmount);
     }
 }

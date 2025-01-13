@@ -27,7 +27,7 @@ class PaymentServiceSpringTest {
 
     @Test
     @DisplayName("변환된 금액을 테스트한다.")
-    void prepare() throws IOException {
+    void prepare() {
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
         assertAll(
@@ -40,7 +40,7 @@ class PaymentServiceSpringTest {
 
     @Test
     @DisplayName("유효시간은 현재 시간의 30분 뒤이다.")
-    void 유효시간은_현재_시간의_30분_뒤이다() throws IOException {
+    void 유효시간은_현재_시간의_30분_뒤이다() {
         // Given
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 

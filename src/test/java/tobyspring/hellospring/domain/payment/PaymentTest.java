@@ -2,7 +2,6 @@ package tobyspring.hellospring.domain.payment;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Duration;
@@ -17,7 +16,7 @@ import org.junit.jupiter.api.Test;
 class PaymentTest {
 
     @Test
-    void 금액을_환율에_맞게_변환한다() throws IOException {
+    void 금액을_환율에_맞게_변환한다() {
         // Given
         Clock clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
         PaymentFactory paymentFactory = new PaymentFactory(new ExRateProviderStub(BigDecimal.valueOf(1_000)), clock);
@@ -32,7 +31,7 @@ class PaymentTest {
 
     @Test
     @DisplayName("유효시간은 현재 시간의 30분까지이다.")
-    void 유효시간은_현재_시간의_30분까지이다() throws IOException {
+    void 유효시간은_현재_시간의_30분까지이다() {
         // Given
         Clock clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
         PaymentFactory paymentFactory = new PaymentFactory(new ExRateProviderStub(BigDecimal.valueOf(1_000)), clock);
