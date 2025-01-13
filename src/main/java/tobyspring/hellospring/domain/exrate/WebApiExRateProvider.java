@@ -1,28 +1,30 @@
 package tobyspring.hellospring.domain.exrate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
+import tobyspring.hellospring.api.ApiExecutor;
 import tobyspring.hellospring.api.SimpleApiExecutor;
 import tobyspring.hellospring.domain.payment.ExRateProvider;
-import tobyspring.hellospring.dto.ExRateData;
+import tobyspring.hellospring.extractor.ErApiExRateExtractor;
+import tobyspring.hellospring.extractor.ExRateExtractor;
 
 //@Component
 public class WebApiExRateProvider implements ExRateProvider {
 
     private static final String URL = "https://open.er-api.com/v6/latest/";
-    private static final String KRW = "KRW";
 
     @Override
     public BigDecimal getExRate(final String currency) {
         String url = URL + currency;
-        return runApiForExRate(url);
+        return runApiForExRate(url, new SimpleApiExecutor(), new ErApiExRateExtractor()); // 콜백 (실제 구현체)
     }
 
-    private BigDecimal runApiForExRate(final String url) {
+    // 템플릿
+    private BigDecimal runApiForExRate(final String url, final ApiExecutor apiExecutor,
+                                       final ExRateExtractor exRateExtractor) {
         URI uri = null;
         try {
             uri = new URI(url);
@@ -32,21 +34,15 @@ public class WebApiExRateProvider implements ExRateProvider {
 
         String response;
         try {
-            response = new SimpleApiExecutor().execute(uri);
+            response = apiExecutor.execute(uri);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            return extractExRate(response);
+            return exRateExtractor.extractExRate(response);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private BigDecimal extractExRate(final String response) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        ExRateData data = mapper.readValue(response, ExRateData.class);
-        return data.rates().get(KRW);
     }
 }
