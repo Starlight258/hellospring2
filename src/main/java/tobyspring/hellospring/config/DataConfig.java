@@ -1,6 +1,7 @@
 package tobyspring.hellospring.config;
 
 import jakarta.persistence.EntityManagerFactory;
+import java.util.Properties;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,11 @@ public class DataConfig {
             setGenerateDdl(true);
             setShowSql(true);
         }});
+
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        emf.setJpaProperties(properties);
         return emf;
     }
 
