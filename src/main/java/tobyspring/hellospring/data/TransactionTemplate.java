@@ -34,18 +34,9 @@ public class TransactionTemplate {
     }
 
     public void executeWithoutResult(TransactionVoidCallback callback) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
-
-        try {
-            transaction.begin();
+        execute(entityManager -> {
             callback.execute(entityManager);
-            transaction.commit();
-        } catch (Exception e) {
-            transaction.rollback();
-            throw e;
-        } finally {
-            entityManager.close();
-        }
+            return null;
+        });
     }
 }
