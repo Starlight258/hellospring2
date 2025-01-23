@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tobyspring.hellospring.domain.order.Order;
-import tobyspring.hellospring.transaction.TransactionTemplate;
+import tobyspring.hellospring.data.TransactionTemplate;
 
 class DataConfigTest {
 

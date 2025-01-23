@@ -1,5 +1,6 @@
 package tobyspring.hellospring.config;
 
+import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import tobyspring.hellospring.data.OrderRepository;
+import tobyspring.hellospring.data.TransactionTemplate;
 
 @Configuration
 public class DataConfig {
@@ -30,5 +33,15 @@ public class DataConfig {
             setShowSql(true);
         }});
         return emf;
+    }
+
+    @Bean
+    public TransactionTemplate transactionTemplate(EntityManagerFactory entityManagerFactory) {
+        return new TransactionTemplate(entityManagerFactory);
+    }
+
+    @Bean
+    public OrderRepository orderRepository(EntityManagerFactory entityManagerFactory) {
+        return new OrderRepository(transactionTemplate(entityManagerFactory));
     }
 }
