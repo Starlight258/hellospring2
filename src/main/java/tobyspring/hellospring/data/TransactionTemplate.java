@@ -21,11 +21,15 @@ public class TransactionTemplate {
             T result = callback.execute(entityManager);
             transaction.commit();
             return result;
-        } catch (Exception e) {
-            transaction.rollback();
+        } catch (RuntimeException e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
             throw e;
         } finally {
-            entityManager.close();
+            if (entityManager.isOpen()) {
+                entityManager.close();
+            }
         }
     }
 
