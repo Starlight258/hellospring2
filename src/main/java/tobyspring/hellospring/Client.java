@@ -1,14 +1,15 @@
 package tobyspring.hellospring;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tobyspring.hellospring.config.PaymentConfig;
 import tobyspring.hellospring.domain.payment.Payment;
 import tobyspring.hellospring.domain.payment.PaymentService;
 
+@SpringBootApplication
 public class Client {
 
     public static void main(String[] args) throws InterruptedException {

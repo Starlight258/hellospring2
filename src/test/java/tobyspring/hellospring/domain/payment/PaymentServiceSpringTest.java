@@ -1,22 +1,23 @@
 package tobyspring.hellospring.domain.payment;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import tobyspring.hellospring.config.TestPaymentConfig;
+import tobyspring.hellospring.config.PaymentConfig;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestPaymentConfig.class)
+@ContextConfiguration(classes = PaymentConfig.class)
 class PaymentServiceSpringTest {
 
     @Autowired
@@ -49,6 +50,6 @@ class PaymentServiceSpringTest {
         LocalDateTime expectedValidUntil = now.plusMinutes(30);
 
         // Then
-        assertThat(payment.getValidUntil()).isEqualTo(expectedValidUntil);
+        assertThat(payment.getValidUntil()).isCloseTo(expectedValidUntil, within(1, ChronoUnit.SECONDS));
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import tobyspring.hellospring.Client;
 import tobyspring.hellospring.domain.exrate.CachedExRateProvider;
-import tobyspring.hellospring.domain.exrate.RestTemplateExRateProvider;
+import tobyspring.hellospring.domain.exrate.SimpleExRateProvider;
 import tobyspring.hellospring.domain.payment.ExRateProvider;
 import tobyspring.hellospring.domain.payment.PaymentFactory;
 import tobyspring.hellospring.domain.payment.PaymentService;
@@ -38,7 +38,7 @@ public class PaymentConfig {
 
     @Bean
     public ExRateProvider exRateProvider() {
-        return new RestTemplateExRateProvider(restTemplate());
+        return new SimpleExRateProvider();
     }
 
     @Bean
