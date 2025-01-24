@@ -1,16 +1,15 @@
 package tobyspring.hellospring.data;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import tobyspring.hellospring.domain.order.Order;
 
 public class OrderRepository {
 
-    private final TransactionTemplate transactionTemplate;
-
-    public OrderRepository(final TransactionTemplate transactionTemplate) {
-        this.transactionTemplate = transactionTemplate;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public void save(final Order order) {
-        transactionTemplate.executeWithoutResult(entityManager -> entityManager.persist(order));
+        entityManager.persist(order);
     }
 }

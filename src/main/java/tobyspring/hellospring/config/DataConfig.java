@@ -3,15 +3,17 @@ package tobyspring.hellospring.config;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.Properties;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import tobyspring.hellospring.data.OrderRepository;
-import tobyspring.hellospring.data.TransactionTemplate;
 
 @Configuration
 public class DataConfig {
@@ -24,7 +26,7 @@ public class DataConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
         emf.setPackagesToScan(PACKAGE_NAME);
@@ -42,12 +44,17 @@ public class DataConfig {
     }
 
     @Bean
-    public TransactionTemplate transactionTemplate(EntityManagerFactory entityManagerFactory) {
-        return new TransactionTemplate(entityManagerFactory);
+    public OrderRepository orderRepository() {
+        return new OrderRepository();
     }
 
     @Bean
-    public OrderRepository orderRepository(EntityManagerFactory entityManagerFactory) {
-        return new OrderRepository(transactionTemplate(entityManagerFactory));
+    public BeanPostProcessor persistenceAnnotationBeanPostProcessor() {
+        return new PersistenceAnnotationBeanPostProcessor();
+    }
+
+    @Bean
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 }
