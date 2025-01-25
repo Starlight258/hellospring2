@@ -1,4 +1,4 @@
-package tobyspring.hellospring.data;
+package tobyspring.hellospring.domain.order;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -11,7 +11,6 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tobyspring.hellospring.domain.order.Order;
 
 @SpringBootTest
 @Transactional

@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import tobyspring.hellospring.data.OrderRepository;
+import tobyspring.hellospring.domain.order.OrderRepository;
 import tobyspring.hellospring.domain.order.Order;
 
 @SpringBootTest
 @Import(DataConfig.class)
-class DataClientTest {
+class OrderClientTest {
 
     @PersistenceContext
     private EntityManager entityManager;

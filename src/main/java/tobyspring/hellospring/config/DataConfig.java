@@ -13,7 +13,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import tobyspring.hellospring.data.OrderRepository;
 
 @Configuration
 public class DataConfig {
@@ -41,11 +40,6 @@ public class DataConfig {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         emf.setJpaProperties(properties);
         return emf;
-    }
-
-    @Bean
-    public OrderRepository orderRepository() {
-        return new OrderRepository();
     }
 
     @Bean

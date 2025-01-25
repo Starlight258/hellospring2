@@ -1,8 +1,7 @@
-package tobyspring.hellospring.data;
+package tobyspring.hellospring.domain.order;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import tobyspring.hellospring.domain.order.Order;
 
 public class OrderRepository {
 
