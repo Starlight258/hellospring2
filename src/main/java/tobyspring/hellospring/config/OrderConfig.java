@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import tobyspring.hellospring.data.JpaOrderRepository;
+import tobyspring.hellospring.domain.order.OrderRepository;
 import tobyspring.hellospring.domain.order.OrderService;
 
 @Configuration
@@ -12,7 +13,7 @@ import tobyspring.hellospring.domain.order.OrderService;
 public class OrderConfig {
 
     @Bean
-    public JpaOrderRepository orderRepository() {
+    public OrderRepository orderRepository() {
         return new JpaOrderRepository();
     }
 
