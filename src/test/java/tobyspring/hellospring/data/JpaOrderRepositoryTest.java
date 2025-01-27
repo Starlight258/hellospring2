@@ -1,4 +1,4 @@
-package tobyspring.hellospring.domain.order;
+package tobyspring.hellospring.data;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -9,11 +9,15 @@ import java.math.BigDecimal;
 import org.assertj.core.api.Assertions;
 import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import tobyspring.hellospring.data.JpaOrderRepository;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import tobyspring.hellospring.config.OrderConfig;
+import tobyspring.hellospring.domain.order.Order;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = OrderConfig.class)
 @Transactional
 class JpaOrderRepositoryTest {
 
