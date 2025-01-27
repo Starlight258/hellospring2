@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import tobyspring.hellospring.domain.order.OrderRepository;
+import tobyspring.hellospring.data.JpaOrderRepository;
 import tobyspring.hellospring.domain.order.Order;
 
 @SpringBootTest
@@ -23,7 +23,7 @@ class OrderClientTest {
     private EntityManager entityManager;
 
     @Autowired
-    private OrderRepository orderRepository;
+    private JpaOrderRepository jpaOrderRepository;
 
     @Test
     @DisplayName("DataConfig 빈 등록 테스트")
@@ -45,7 +45,7 @@ class OrderClientTest {
 
         // When & Then
         Assertions.assertThatCode(() -> {
-            orderRepository.save(order);
+            jpaOrderRepository.save(order);
         }).doesNotThrowAnyException();
     }
 }

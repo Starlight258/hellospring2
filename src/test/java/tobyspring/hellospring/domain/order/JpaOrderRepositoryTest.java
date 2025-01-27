@@ -11,16 +11,17 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import tobyspring.hellospring.data.JpaOrderRepository;
 
 @SpringBootTest
 @Transactional
-class OrderRepositoryTest {
+class JpaOrderRepositoryTest {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
-    private OrderRepository orderRepository;
+    private JpaOrderRepository jpaOrderRepository;
 
     @Test
     void 엔티티를_저장한다() {
@@ -29,7 +30,7 @@ class OrderRepositoryTest {
 
         // When & Then
         Assertions.assertThatCode(() -> {
-            orderRepository.save(order);
+            jpaOrderRepository.save(order);
         }).doesNotThrowAnyException();
     }
 
@@ -37,12 +38,12 @@ class OrderRepositoryTest {
     void 같은_id를_가진_엔티티를_저장하면_예외가_발생한다() {
         // Given
         Order order = new Order("100", BigDecimal.TEN);
-        orderRepository.save(order);
+        jpaOrderRepository.save(order);
 
         // When & Then
         assertThatThrownBy(() -> {
             Order order2 = new Order("100", BigDecimal.TEN);
-            orderRepository.save(order2);
+            jpaOrderRepository.save(order2);
             entityManager.flush();
         }).isInstanceOf(ConstraintViolationException.class);
     }
