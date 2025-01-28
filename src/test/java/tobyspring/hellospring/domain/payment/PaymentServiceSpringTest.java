@@ -14,10 +14,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import tobyspring.hellospring.config.PaymentConfig;
+import tobyspring.hellospring.config.TestPaymentConfig;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = PaymentConfig.class)
+@ContextConfiguration(classes = TestPaymentConfig.class)
 class PaymentServiceSpringTest {
 
     @Autowired
